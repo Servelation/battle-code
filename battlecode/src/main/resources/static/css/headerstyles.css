@@ -18,14 +18,14 @@ header{
 	height:50pt;
 	margin: 0pt 30pt;
 }
-header a{
+.headerLink{
 	text-decoration: none;
 	font-family: Courier New;
 	font-size: 18pt;
 	margin: 10pt 8pt;
 	color: #fff;
 }
-header a .headTab{
+.headerLink .headTab{
 	padding: 24pt 0pt;
 }
 .profile{
@@ -41,4 +41,13 @@ header a .headTab{
 	position: relative;
 	float: right;
 	margin: 10pt 0pt;
+}
+.headerLog{
+	position: relative;
+	float: right;
+	margin: auto 5pt;
+}
+#registration{
+	margin-right: 15pt;
+
 }

@@ -3,12 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	
-	<title>Insert title here</title>
+	<title>Registration</title>
 	<link rel="stylesheet" type="text/css" th:href="@{css/headerstyles.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{css/logstyle.css}"> 
 	
-    <meta name="viewport" content="width=device-width, initial-scale=1">
- 	
-
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -79,7 +79,38 @@
 
 </header>
 
+<div class ="framelog"  >
+		<div th:if="${param.error}" class="alert alert-danger" >
+            Неправильный пароль или логин
+        </div>
+        <div th:if="${param.logout}" class="alert alert-warning" >
+            Вы вышли из аккаунта
+        </div>
+        <div th:if="${messageExists}" class="alert alert-danger" >
+            Пользователь с таким именем уже существует!
+        </div>
+	<p class="frameTitle">  <strong>Регистрация</strong>   </p>
+	
+	
+	<form th:action="@{/registration}" method="post">
 
+	<div class="mb-3">
+	    <label for="exampleInputEmail1" class="form-label">Логин </label>
+	    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">
+	    <div id="emailHelp" class="form-text">...</div>
+	  </div>
+	  <div class="mb-3">
+	    <label for="exampleInputEmail1" class="form-label">Email </label>
+	    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+	    <div id="emailHelp" class="form-text">...</div>
+	  </div>
+	  <div class="mb-3">
+	    <label for="exampleInputPassword1" class="form-label">Пароль</label>
+	    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+	  </div>
+	  <button type="submit" class="btn btn-primary" value="Принять">Принять</button>
+	</form>
+</div>
 
 
 </body>
