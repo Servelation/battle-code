@@ -20,17 +20,17 @@
 		<img th:src="@{images/logo.png}">
 	</div>
 	<a href = "http://htmlbook.ru/blog/svoi-shrift-na-stranitse" class="headerLink">
-	<div class = "headTab">	
+	<div class = "headTab headerLink">	
 			Главная
 	</div>
 	</a>
 	<a href = "http://htmlbook.ru/blog/svoi-shrift-na-stranitse" class="headerLink">
-	<div class = "headTab">	
+	<div class = "headTab headerLink">	
 			Практика
 		</div>
 	</a>
 	<a href = "http://htmlbook.ru/blog/svoi-shrift-na-stranitse" class="headerLink">
-	<div class = "headTab">	
+	<div class = "headTab headerLink">	
 			Рейтинг кодеров
 		</div>
 	</a>
@@ -38,10 +38,10 @@
 <div th:if="${isAuth}" class="headerLog headTab">
 	<div class="dropdown headTab profile">
 	  <button class=" btn btn-secondary dropdown-toggle profileHeader" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-	    Dropdown button
+	   <span th:text="${user.getUsername}"></span>
 	  </button>
 	  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-		    <li><a class="dropdown-item active" href="#">Action</a></li>
+		    <li><a class="dropdown-item active" href="#" th:text="${user.getLevel}">Action</a></li>
 		    <li><a class="dropdown-item" href="#">Another action</a></li>
 		    <li><a class="dropdown-item" href="#">Something else here</a></li>
 		    <li><hr class="dropdown-divider"></li>
