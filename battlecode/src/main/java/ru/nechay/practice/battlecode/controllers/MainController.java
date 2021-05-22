@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import ru.nechay.practice.battlecode.models.Role;
 import ru.nechay.practice.battlecode.models.User;
 
 @Controller
@@ -22,9 +23,17 @@ public class MainController {
 		Boolean isAuthificated = UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication.getClass());
 		System.out.println(isAuthificated);
 		
-		
+		model.addAttribute("ADMIN", Role.ADMIN);
 		model.addAttribute("isAuth",isAuthificated);
+		if(user==null) {
+			model.addAttribute("level_text","Войдите в аккаунт");
+		}else {
+			model.addAttribute("level_text", "Level"+Integer.toString(user.getLevel()));
+			
+		}
+		
 		model.addAttribute("user", user);
+		
 		return "battlecode/main";
 	}
 }

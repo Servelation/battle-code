@@ -25,10 +25,13 @@ import ru.nechay.practice.battlecode.repo.UserRepo;
 @PreAuthorize("hasAuthority('ADMIN')")
 public class AdminController {
 
-	
 	@Autowired
 	private UserRepo userRepo;
-	
+	@GetMapping
+	public String getAdmin(Model model) {
+		
+		return "admin/admin";
+	}
 	@GetMapping("/users")
 	public String userList(Model model) {
 		model.addAttribute("users", userRepo.findAll());
