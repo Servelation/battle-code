@@ -13,7 +13,7 @@ public class MvcConfig implements WebMvcConfigurer {
 		//TODO: Сделать вьюху логин и регистрации
 		registry.addViewController("/login").setViewName("battlecode/login");
 	}
-	
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 	    registry.addResourceHandler("/images/**").addResourceLocations("classpath:/static/images/");

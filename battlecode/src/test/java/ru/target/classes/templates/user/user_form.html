@@ -4,8 +4,9 @@
 	<meta charset="UTF-8">
 	
 	<title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" th:href="@{css/headerstyles.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{css/logstyle.css}"> 
+	<link rel="stylesheet" type="text/css" th:href="@{../css/headerstyles.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{../css/logstyle.css}"> 
+	
     <meta name="viewport" content="width=device-width, initial-scale=1">
  	
 
@@ -42,7 +43,7 @@
 	  </button>
 	  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
 		    <li><a class="dropdown-item active" href="#" th:text="${level_text}">Action</a></li>
-		    <li th:if="${#sets.contains(user.getRoles(),ADMIN)}"><a class="dropdown-item" th:href="@{/admin}">Админка</a></li>
+		    <li th:if="${#sets.contains(user.getRoles(),ADMIN)}"><a class="dropdown-item" href="@{/admin}">Админка</a></li>
 		    <li><a class="dropdown-item" th:href="@{/user/{id}/edit(id=${user.getId()})}">Редактировать</a></li>
 		    <li><a class="dropdown-item" href="#">Something else here</a></li>
 		    <li><hr class="dropdown-divider"></li>
@@ -80,13 +81,27 @@
 
 </header>
 
- <div class ="framelog"  >
-	<ul class="list-group">
-	  <li class="list-group-item" th:each="lang :${languages}">
-	  	<span th:text="${lang.getName()}"> </span>
-	  </li>
-	</ul>
+<div class ="framelog" >
+<p class="frameTitle">  <strong>Редактор пользователя</strong>   </p>
+	<div th:if="${photo}">
+	<img class="picture" th:src="@{'/user/avatar/'+${user.getId()}}" />
+	</div>
+	<div th:unless="${photo}">
+	<img class="picture" th:src="@{images/profile_pic.png}" />
+	</div>
+	пидарас
+	<form th:action="@{/user/{id}/edit(id=${user.getId()})}" method="post"  enctype="multipart/form-data">
+			<label for="exampleInputEmail1" class="form-label" th:text="${user.getUsername()}">Логин </label>
+	    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">
+	    <input type="file" name="file">
+		<input type="hidden" th:value="${user.getId()}" name="userId">
+		 <button type="submit" class="btn btn-primary" value="Принять">Принять</button>
+	</form>
+
 </div>
+
+
+
 
 
 </body>

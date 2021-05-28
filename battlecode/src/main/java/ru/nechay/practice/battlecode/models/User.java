@@ -2,7 +2,8 @@ package ru.nechay.practice.battlecode.models;
 
 import java.util.Collection;
 import java.util.Set;
-
+ 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -14,11 +15,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 
 @Entity
 @Table(name = "usr")
@@ -36,6 +38,7 @@ public class User implements UserDetails{
 	@Column(name = "active")
 	private Boolean active;
 	
+	
 	@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
 	@CollectionTable(name = "user_role", joinColumns = @JoinColumn(name= "user_id"))
 	@Enumerated(EnumType.STRING)
@@ -47,6 +50,14 @@ public class User implements UserDetails{
 	@Column(name = "level")
 	private Integer level;
 	
+	
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(
+	        name = "user_project", 
+	        joinColumns = { @JoinColumn(name = "user_id") }, 
+	        inverseJoinColumns = { @JoinColumn(name = "task_id") }
+	    )
+	private Set<ProgramTask> tasks;
 
 	public User() {
 		
@@ -143,6 +154,16 @@ public class User implements UserDetails{
 	}
 
 	
+	
+	
+	public Set<ProgramTask> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(Set<ProgramTask> tasks) {
+		this.tasks = tasks;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

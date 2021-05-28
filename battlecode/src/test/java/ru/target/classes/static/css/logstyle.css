@@ -1,0 +1,23 @@
+body{
+	background:url(codr.jpg);
+	background-size: cover;/* сохранение пропорций, выравнивание по высоте или ширине блока */
+	background-attachment: fixed; /*Будет ли прокручиваться фоновая пикча: не будет;  */
+}
+
+.framelog{
+	margin: 10pt auto;
+	padding: 30pt;
+	width: 250pt;
+	border: 1px solid #333;
+	border-radius: 10pt;
+	background: rgba(255,255,255,0.8);
+	box-shadow: 0pt 5pt 10pt 1pt rgba(0,0,0,.8);
+}
+
+.frameTitle{
+	font-family: Courier New;
+	font-size: 20pt;
+/*	margin: 10pt auto;*/
+	text-align: center;
+
+}

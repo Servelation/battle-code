@@ -3,12 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	
-	<title>Insert title here</title>
+	<title>п</title>
 	<link rel="stylesheet" type="text/css" th:href="@{css/headerstyles.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{css/logstyle.css}"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
- 	
 
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -19,7 +19,7 @@
 	<div class = "headTab">
 		<img th:src="@{images/logo.png}">
 	</div>
-	<a href = "@{/}" class="headerLink">
+	<a href = "http://htmlbook.ru/blog/svoi-shrift-na-stranitse" class="headerLink">
 	<div class = "headTab">	
 			Главная
 	</div>
@@ -38,12 +38,11 @@
 <div th:if="${isAuth}" class="headerLog headTab">
 	<div class="dropdown headTab profile">
 	  <button class=" btn btn-secondary dropdown-toggle profileHeader" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-	   <span th:text="${user.getUsername()}"></span>
+	    Dropdown button
 	  </button>
 	  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-		    <li><a class="dropdown-item active" href="#" th:text="${level_text}">Action</a></li>
-		    <li th:if="${#sets.contains(user.getRoles(),ADMIN)}"><a class="dropdown-item" th:href="@{/admin}">Админка</a></li>
-		    <li><a class="dropdown-item" th:href="@{/user/{id}/edit(id=${user.getId()})}">Редактировать</a></li>
+		    <li><a class="dropdown-item active" href="#">Action</a></li>
+		    <li><a class="dropdown-item" href="#">Another action</a></li>
 		    <li><a class="dropdown-item" href="#">Something else here</a></li>
 		    <li><hr class="dropdown-divider"></li>
 		   	<form th:action="@{/logout}" method="post">
@@ -81,12 +80,34 @@
 </header>
 
  <div class ="framelog"  >
-	<ul class="list-group">
-	  <li class="list-group-item" th:each="lang :${languages}">
-	  	<span th:text="${lang.getName()}"> </span>
-	  </li>
-	</ul>
-</div>
+		<div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+           Вы вышли из аккаунта
+        </div>
+        <div th:if="${messageExists}">
+            Пользователь с таким именем уже существует!
+        </div>
+	<p class="frameTitle">  <strong>Авторизация</strong>   </p>
+	
+	
+	<form th:action="@{/login}" method="post">
+
+	<div class="mb-3">
+	    <label for="exampleInputEmail1" class="form-label">Логин </label>
+	    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">
+	    <div id="emailHelp" class="form-text">...</div>
+	  </div>
+	  <div class="mb-3">
+	    <label for="exampleInputPassword1" class="form-label">Пароль</label>
+	    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+	  </div>
+	  <button type="submit" class="btn btn-primary" value="Принять">Принять</button>
+	</form>
+	
+	<a th:href="@{/registration}">Зарегистрироваться</a>
+</div> 
 
 
 </body>

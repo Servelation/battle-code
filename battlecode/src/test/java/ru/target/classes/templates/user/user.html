@@ -4,8 +4,9 @@
 	<meta charset="UTF-8">
 	
 	<title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" th:href="@{css/headerstyles.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{css/logstyle.css}"> 
+	<link rel="stylesheet" type="text/css" th:href="@{../css/headerstyles.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{../css/logstyle.css}"> 
+	
     <meta name="viewport" content="width=device-width, initial-scale=1">
  	
 
@@ -42,7 +43,7 @@
 	  </button>
 	  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
 		    <li><a class="dropdown-item active" href="#" th:text="${level_text}">Action</a></li>
-		    <li th:if="${#sets.contains(user.getRoles(),ADMIN)}"><a class="dropdown-item" th:href="@{/admin}">Админка</a></li>
+		    <li th:if="${#sets.contains(user.getRoles(),ADMIN)}"><a class="dropdown-item" href="@{/admin}">Админка</a></li>
 		    <li><a class="dropdown-item" th:href="@{/user/{id}/edit(id=${user.getId()})}">Редактировать</a></li>
 		    <li><a class="dropdown-item" href="#">Something else here</a></li>
 		    <li><hr class="dropdown-divider"></li>
@@ -80,13 +81,10 @@
 
 </header>
 
- <div class ="framelog"  >
-	<ul class="list-group">
-	  <li class="list-group-item" th:each="lang :${languages}">
-	  	<span th:text="${lang.getName()}"> </span>
-	  </li>
-	</ul>
-</div>
+
+
+
+
 
 
 </body>

@@ -34,6 +34,9 @@ public class MainController {
 		
 		model.addAttribute("user", user);
 		
+		
+		
+		
 		return "battlecode/main";
 	}
 }

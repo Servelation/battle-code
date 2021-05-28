@@ -1,0 +1,53 @@
+body{
+	background: #fff;
+	padding: 0pt;
+	margin:  0pt;
+}
+header{
+	height: 70pt;
+	background: #343434;
+	position: relative
+}
+.headTab{
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	
+}
+.headTab img{
+	height:50pt;
+	margin: 0pt 30pt;
+}
+.headerLink{
+	text-decoration: none;
+	font-family: Courier New;
+	font-size: 18pt;
+	margin: 10pt 8pt;
+	color: #fff;
+}
+.headerLink .headTab{
+	padding: 24pt 0pt;
+}
+.profile{
+	position: relative;
+	float: right;
+	margin: 20pt 15pt 20pt -25pt;
+}
+.profileHeader{
+	background-color:#000000;
+	color: #f00;
+}
+#profile_pic{
+	position: relative;
+	float: right;
+	margin: 10pt 0pt;
+}
+.headerLog{
+	position: relative;
+	float: right;
+	margin: auto 5pt;
+}
+#registration{
+	margin-right: 15pt;
+
+}
