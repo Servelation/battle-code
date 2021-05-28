@@ -42,7 +42,7 @@
 	  </button>
 	  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
 		    <li><a class="dropdown-item active" href="#" th:text="${level_text}">Action</a></li>
-		    <li th:if="${#sets.contains(user.getRoles(),ADMIN)}"><a class="dropdown-item" href="@{/admin}">Админка</a></li>
+		    <li th:if="${#sets.contains(user.getRoles(),ADMIN)}"><a class="dropdown-item" th:href="@{/admin}">Админка</a></li>
 		    <li><a class="dropdown-item" th:href="@{/user/{id}/edit(id=${user.getId()})}">Редактировать</a></li>
 		    <li><a class="dropdown-item" href="#">Something else here</a></li>
 		    <li><hr class="dropdown-divider"></li>
