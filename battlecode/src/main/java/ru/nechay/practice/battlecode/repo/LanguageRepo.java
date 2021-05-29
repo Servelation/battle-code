@@ -3,11 +3,10 @@ package ru.nechay.practice.battlecode.repo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import ru.nechay.practice.battlecode.models.User;
+import ru.nechay.practice.battlecode.models.Language;
 
 @Repository
-public interface UserRepo extends JpaRepository<User, Long> {
+public interface LanguageRepo extends JpaRepository<Language, Long> {
 	
-	User findByUsername(String username);
+	Language findByName(String name);
 }
-

@@ -26,6 +26,9 @@ public class ProgramTask {
 	@Column(name = "output")
 	private String output;
 	
+	@Column(name = "title")
+	private String title;
+	
 	@Column(name = "description")
 	private String description;
 	
@@ -110,6 +113,14 @@ public class ProgramTask {
 
 	public void setUsers(Set<User> users) {
 		this.users = users;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	 
 }
