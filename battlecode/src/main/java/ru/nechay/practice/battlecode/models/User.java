@@ -51,7 +51,7 @@ public class User implements UserDetails{
 	private Integer level;
 	
 	
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany(fetch = FetchType.EAGER,cascade = { CascadeType.ALL })
 	@JoinTable(
 	        name = "user_project", 
 	        joinColumns = { @JoinColumn(name = "user_id") }, 
@@ -192,6 +192,14 @@ public class User implements UserDetails{
 		return true;
 	}
 	
-	
+	public void updateLevel() {
+		int neededExp = 50;
+		for(int i =1;i<this.level;i++) {
+			neededExp +=neededExp;
+		}
+		if(this.experience>=neededExp) {
+			this.level +=1;
+		}
+	}
 	
 }

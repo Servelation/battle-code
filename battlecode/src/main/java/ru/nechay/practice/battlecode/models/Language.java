@@ -19,7 +19,6 @@ public class Language {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	
 	@Column(name = "name")
 	private String name;
 
@@ -27,7 +26,6 @@ public class Language {
     private Set<ProgramTask> tasks;
 	
 	
-
 	public Language() {
 		
 	}
@@ -92,6 +90,9 @@ public class Language {
 			return false;
 		return true;
 	}
+
+
+
 	
 	
 	

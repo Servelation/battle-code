@@ -1,0 +1,7 @@
+.taskframe{
+	width: 500pt;
+}
+#taskArea{
+	height: 150pt;
+    max-height: 150pt;  
+}

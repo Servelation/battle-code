@@ -4,8 +4,9 @@
 	<meta charset="UTF-8">
 	
 	<title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" th:href="@{../../css/headerstyles.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{../../css/logstyle.css}"> 
+	<link rel="stylesheet" type="text/css" th:href="@{../css/headerstyles.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{../css/logstyle.css}"> 
+	<link rel="stylesheet" type="text/css" th:href="@{../css/taskstyle.css}"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
  	
 
@@ -80,12 +81,37 @@
 
 </header>
 
- <div class ="framelog"  >
-	<ul class="list-group">
-	  <li class="list-group-item" th:each="task :${tasks}">
-	  	<a th:text="${task.getTitle()}" th:href="@{/tasks/{id}(id=${task.getId()})}"> Title of the task </a>
-	  </li>
-	</ul>
+ <div class ="framelog taskframe">
+	<strong> <p class="frameTitle" th:text="${task.getTitle}">    </p></strong>
+	<p th:text="${task.getDescription()}"><p>
+	<p><strong>Input:</strong> </p>
+	<p th:text="${task.getInput()}"><p>
+	<p><strong>Output:</strong> </p>
+	<p th:text="${task.getOutput()}"><p>
+	<div class="alert alert-success" role="alert" th:if="${success}">
+	  <h4 class="alert-heading">Получилось!!</h4>
+	  <p>Приступай к следующему заданию!</p>
+	  <hr>
+	  <a class="mb-0" th:href="@{/tasks/{id}(id=${nextTask.getId()})}">Перейти дальше</a> 
+	</div>
+	<div class="alert alert-danger" role="alert" th:if="${fail}">
+		Неправильно!
+	</div>
+	<p th:if="out"><strong>Вывод:</strong> </p>
+	<p th:text="${out}"> </p>
+	<form th:action="@{/tasks/{id}(id=${task.getId()})}" method="post">
+		<div class="mb-3">
+		  	<textarea rows="45" cols="45" name="program" id="taskArea">
+class HelloWorld {
+	public static void main(String[] args) {
+		System.out.println("Hello World!");
+	}
+}
+		  	</textarea>
+		  </div>
+		<button type="submit" class="btn btn-primary" value="Принять">Принять</button>
+	</form>
+	
 </div>
 
 

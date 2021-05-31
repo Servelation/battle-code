@@ -83,7 +83,7 @@
  <div class ="framelog"  >
 	<ul class="list-group">
 	  <li class="list-group-item" th:each="lang :${langs}">
-	  	<a th:text="${lang.getName()}" th:href="@{/tasks/{name}(name=${lang.getName()})}"> </a>
+	  	<a th:text="${lang.getName()}" th:href="@{/tasks/lang/{name}(name=${lang.getName()})}"> </a>
 	  </li>
 	</ul>
 </div>
