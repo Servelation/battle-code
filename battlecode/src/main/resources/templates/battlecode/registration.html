@@ -15,69 +15,8 @@
 </head>
 <body>
 
-<header>
-	<div class = "headTab">
-		<img th:src="@{images/logo.png}">
-	</div>
-	<a href = "http://htmlbook.ru/blog/svoi-shrift-na-stranitse" class="headerLink">
-	<div class = "headTab">	
-			Главная
-	</div>
-	</a>
-	<a href = "http://htmlbook.ru/blog/svoi-shrift-na-stranitse" class="headerLink">
-	<div class = "headTab">	
-			Практика
-		</div>
-	</a>
-	<a href = "http://htmlbook.ru/blog/svoi-shrift-na-stranitse" class="headerLink">
-	<div class = "headTab">	
-			Рейтинг кодеров
-		</div>
-	</a>
+<header th:replace ="base::head (path=' ')"></header>
 
-<div th:if="${isAuth}" class="headerLog headTab">
-	<div class="dropdown headTab profile">
-	  <button class=" btn btn-secondary dropdown-toggle profileHeader" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-	    Dropdown button
-	  </button>
-	  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-		    <li><a class="dropdown-item active" href="#">Action</a></li>
-		    <li><a class="dropdown-item" href="#">Another action</a></li>
-		    <li><a class="dropdown-item" href="#">Something else here</a></li>
-		    <li><hr class="dropdown-divider"></li>
-		   	<form th:action="@{/logout}" method="post">
-           
-		    <li> <input class="dropdown-item" type="submit" value="Выйти"/></li>
-		    </form>
-		  </ul>
-		</div>
-
-	<div class = "headTab " id="profile_pic">
-		<img th:src="@{images/profile_pic.png}">
-	</div>
-</div>	
-
-<div th:unless="${isAuth}" class="headerLog headTab">
-	<a th:href = "@{/registration}" class="headerLink headerLog" id="registration">
-		<div class="headTab">
-			Регистрация
-		</div>
-	</a>
-
-	<a class="headerLink headerLog">
-		<div class="headTab">
-			||
-		</div>
-	</a>
-		
-	<a th:href = "@{/login}" class="headerLink headerLog">
-		<div class="headTab">
-			Войти
-		</div>
-	</a>
-</div>
-
-</header>
 
 <div class ="framelog"  >
 		<div th:if="${param.error}" class="alert alert-danger" >

@@ -24,7 +24,7 @@ import ru.nechay.practice.battlecode.repo.UserRepo;
 
 @Controller
 @RequestMapping("/tasks")
-public class TaskController {
+public class TaskController extends ParentControl{
 
 	@Autowired
 	private ProgramTaskRepo programTaskRepo;
@@ -32,17 +32,27 @@ public class TaskController {
 	private UserRepo userRepo;
 	
 	@GetMapping("/lang/{lang}")
-	public String showTasks(@PathVariable String lang,
+	public String showTasks(
+			@AuthenticationPrincipal User user,
+			@PathVariable String lang,
 			Model model) {
+		addUserToModel(user, model);
 		List<ProgramTask> tasks = programTaskRepo.findByLanguage(lang);
 		tasks.forEach(x -> System.out.println(x));
 		model.addAttribute("tasks", tasks);
+		if(user!=null) {
+			List<ProgramTask> userTasks = userRepo.findAllTasks();
+			model.addAttribute("userTasks", userTasks);
+		}
 		return "tasks/list_of_tasks";
 	}
 	
 	@GetMapping("/{task}")
-	public String showTasks(@PathVariable ProgramTask task,
+	public String showTask(
+						@AuthenticationPrincipal User user,
+						@PathVariable ProgramTask task,
 						Model model) {
+		addUserToModel(user, model);
 		model.addAttribute("task", task);
 		model.addAttribute("nextTask", task);
 		return "tasks/task";
@@ -54,6 +64,7 @@ public class TaskController {
 					@PathVariable ProgramTask task,
 					@RequestParam String program,
 					Model model) throws IOException {
+		addUserToModel(user, model);
 		ProgramHandler progHandler = new ProgramHandler(program, task.getInput()); 
 		if(!progHandler.isValid()) {
 			return "";

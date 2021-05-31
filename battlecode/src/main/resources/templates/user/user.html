@@ -10,82 +10,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
  	
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
 
-<header>
-	<div class = "headTab">
-		<img th:src="@{images/logo.png}">
-	</div>
-	<a href = "@{/}" class="headerLink">
-	<div class = "headTab">	
-			Главная
-	</div>
-	</a>
-	<a href = "http://htmlbook.ru/blog/svoi-shrift-na-stranitse" class="headerLink">
-	<div class = "headTab">	
-			Практика
-		</div>
-	</a>
-	<a href = "http://htmlbook.ru/blog/svoi-shrift-na-stranitse" class="headerLink">
-	<div class = "headTab">	
-			Рейтинг кодеров
-		</div>
-	</a>
-
-<div th:if="${isAuth}" class="headerLog headTab">
-	<div class="dropdown headTab profile">
-	  <button class=" btn btn-secondary dropdown-toggle profileHeader" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-	   <span th:text="${user.getUsername()}"></span>
-	  </button>
-	  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-		    <li><a class="dropdown-item active" href="#" th:text="${level_text}">Action</a></li>
-		    <li th:if="${#sets.contains(user.getRoles(),ADMIN)}"><a class="dropdown-item" href="@{/admin}">Админка</a></li>
-		    <li><a class="dropdown-item" th:href="@{/user/{id}/edit(id=${user.getId()})}">Редактировать</a></li>
-		    <li><a class="dropdown-item" href="#">Something else here</a></li>
-		    <li><hr class="dropdown-divider"></li>
-		   	<form th:action="@{/logout}" method="post">
-           
-		    <li> <input class="dropdown-item" type="submit" value="Выйти"/></li>
-		    </form>
-		  </ul>
-		</div>
-
-	<div class = "headTab " id="profile_pic">
-		<img th:src="@{images/profile_pic.png}">
-	</div>
-</div>	
-
-<div th:unless="${isAuth}" class="headerLog headTab">
-	<a th:href = "@{/registration}" class="headerLink headerLog" id="registration">
-		<div class="headTab">
-			Регистрация
-		</div>
-	</a>
-
-	<a class="headerLink headerLog">
-		<div class="headTab">
-			||
-		</div>
-	</a>
-		
-	<a th:href = "@{/login}" class="headerLink headerLog">
-		<div class="headTab">
-			Войти
-		</div>
-	</a>
-</div>
-
-</header>
+<header th:replace ="base::head (path='../')"></header>
 
 
 
 
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 </html>

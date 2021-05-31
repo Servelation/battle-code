@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import ru.nechay.practice.battlecode.models.User;
 
 @Controller
-public class UserController {
+public class UserController extends ParentControl{
 
 	@GetMapping("/user/{user}/edit")
 	public String editUser(@PathVariable User user,
 						@AuthenticationPrincipal User realUser,
 						Model model) {
-		
+		addUserToModel(user, model);
 		model.addAttribute("link_user", user);
 		if(user.equals(realUser)) {
 			return "user/user";
