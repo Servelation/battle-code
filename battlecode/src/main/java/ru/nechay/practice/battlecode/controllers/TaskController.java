@@ -41,7 +41,7 @@ public class TaskController extends ParentControl{
 		tasks.forEach(x -> System.out.println(x));
 		model.addAttribute("tasks", tasks);
 		if(user!=null) {
-			List<ProgramTask> userTasks = userRepo.findAllTasks();
+			List<ProgramTask> userTasks = userRepo.findAllTasks(user.getId());
 			model.addAttribute("userTasks", userTasks);
 		}
 		return "tasks/list_of_tasks";
@@ -77,11 +77,13 @@ public class TaskController extends ParentControl{
 //        progHandler.flush();
         if(outOfTheProgram.equals(task.getOutput())) {
         	model.addAttribute("success", true);
-        	List<Long> userTasks = userRepo.findAllTasks()
+        	List<Long> userTasks = userRepo.findAllTasks(user.getId())
         									.stream()
         									.map(x -> x.getId())
         									.collect(Collectors.toList());
+        	userTasks.forEach(x -> System.out.println(x));
         	if(!userTasks.contains(task.getId())) {
+        		System.out.println("Добавляем в user.task данный task");
         		user.setExperience(user.getExperience() + task.getExperience());
         		user.updateLevel();
         		user.getTasks().add(task);
@@ -106,5 +108,7 @@ public class TaskController extends ParentControl{
         model.addAttribute("out", outOfTheProgram);
 		return "tasks/task";
 	}
+	
+	
 	
 }

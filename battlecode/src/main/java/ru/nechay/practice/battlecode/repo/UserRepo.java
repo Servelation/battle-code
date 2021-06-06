@@ -14,7 +14,7 @@ public interface UserRepo extends JpaRepository<User, Long> {
 	
 	User findByUsername(String username);
 	
-	@Query("select u.tasks from User u")
-	List<ProgramTask> findAllTasks();
+	@Query("select u.tasks from User u where u.id = ?1")
+	List<ProgramTask> findAllTasks(Long id);
 }
 

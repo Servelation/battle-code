@@ -1,10 +1,10 @@
 package ru.nechay.practice.battlecode.models;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,15 +35,15 @@ public class ProgramTask {
 	@Column(name = "exp")
 	private Integer experience;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="lang_id", nullable=false)
     private Language language;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="categ_id", nullable=false)
     private Category category;
 		
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="compl_id", nullable=false)
     private Complexity complexity;
 		
@@ -53,7 +53,23 @@ public class ProgramTask {
 	public ProgramTask() {
 		
 	}
-
+	
+	public ProgramTask(ProposedTask task) {
+//		List<Method> taskMethods = Arrays.asList(task.getClass().getDeclaredMethods())
+//		.stream()
+//		.filter(x->x.getName().contains("get") && !x.getName().contains("getUsers"))
+//		.sorted(Comparator.comparing(x -> x.getName()))
+//		.collect(Collectors.toList());
+		this.category 		= task.getCategory();
+		this.complexity 	= task.getComplexity(); 
+		this.description 	= task.getDescription(); 
+		this.experience 	= task.getExperience(); 
+		this.input			= task.getInput();
+		this.language		= task.getLanguage();
+		this.output 		= task.getOutput();
+		this.title 			= task.getTitle();
+	}
+	
 	public long getId() {
 		return id;
 	}

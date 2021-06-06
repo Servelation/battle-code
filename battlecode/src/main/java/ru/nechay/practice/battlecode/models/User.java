@@ -2,7 +2,7 @@ package ru.nechay.practice.battlecode.models;
 
 import java.util.Collection;
 import java.util.Set;
- 
+
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -28,6 +29,8 @@ public class User implements UserDetails{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@Column(name = "email")
+	private String email;
 	
 	@Column(name = "username")
 	private String username;
@@ -49,7 +52,7 @@ public class User implements UserDetails{
 	
 	@Column(name = "level")
 	private Integer level;
-	
+
 	
 	@ManyToMany(fetch = FetchType.EAGER,cascade = { CascadeType.ALL })
 	@JoinTable(
@@ -59,6 +62,8 @@ public class User implements UserDetails{
 	    )
 	private Set<ProgramTask> tasks;
 
+
+	
 	public User() {
 		
 	}

@@ -1,6 +1,8 @@
 package ru.nechay.practice.battlecode.controllers;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -31,12 +33,16 @@ public class MainController extends ParentControl{
 		
 		return "battlecode/main";
 	}
-//	@GetMapping("/rating")
-//	public String rating(
-//			@AuthenticationPrincipal User user,
-//			Model model) {
-//		addUserToModel(user, model);
-//		model.addAttribute(model)
-//		return "battlecode/registration";
-//	}
+	@GetMapping("/rating")
+	public String rating(
+			@AuthenticationPrincipal User user,
+			Model model) {
+		addUserToModel(user, model);
+		List<User> users = userRepo.findAll()
+									.stream()
+									.sorted(Comparator.comparing(x -> -x.getExperience()))
+									.collect(Collectors.toList());
+		model.addAttribute("users",users);
+		return "battlecode/rating";
+	}
 }

@@ -19,17 +19,22 @@
 	<div class = "headTab">
 		<img th:src="@{${path}+'images/logo.png'}">
 	</div>
-	<a href = "@{/}" class="headerLink">
+	<a th:href = "@{/}" class="headerLink">
 	<div class = "headTab">	
 			Главная
 	</div>
 	</a>
-	<a href = "http://htmlbook.ru/blog/svoi-shrift-na-stranitse" class="headerLink">
+	<a th:href = "@{/rating}" class="headerLink">
 	<div class = "headTab">	
 			Рейтинг кодеров
 		</div>
 	</a>
-
+	<a th:href = "@{/propose}" class="headerLink">
+	<div class = "headTab">	
+			Предложить задачу
+		</div>
+	</a>
+	
 <div th:if="${isAuth}" class="headerLog headTab">
 	<div class="dropdown headTab profile">
 	  <button class=" btn btn-secondary dropdown-toggle profileHeader" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,7 +42,7 @@
 	  </button>
 	  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
 		    <li><a class="dropdown-item active" href="#" th:text="${level_text}">Action</a></li>
-		    <li th:if="${#sets.contains(user.getRoles(),ADMIN)}"><a class="dropdown-item" th:href="@{/admin}">Админка</a></li>
+		    <li th:if="${isAdmin}"><a class="dropdown-item" th:href="@{/admin}">Админка</a></li>
 		    <li><a class="dropdown-item" th:href="@{/user/{id}/edit(id=${user.getId()})}">Редактировать</a></li>
 		    <li><a class="dropdown-item" href="#">Something else here</a></li>
 		    <li><hr class="dropdown-divider"></li>

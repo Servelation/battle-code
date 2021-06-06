@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" th:href="@{../css/headerstyles.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{../css/logstyle.css}"> 
+
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+ 	
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+<a th:href="@{/admin}">В админку</a>
+<div class ="framelog">
+	<form th:action="@{/admin/proposed}" method="post" th:each="task : ${tasks}">
+		 <label for="example1" class="form-label">Заголовок</label>
+		 <input type="text" th:value="${task.getTitle()}" class="form-control" id="example1" aria-describedby="emailHelp" name="title">
+		 <label for="example2" class="form-label">Ввод</label>
+		 <input type="text" th:value="${task.getInput()}" class="form-control" id="example2" aria-describedby="emailHelp" name="input">
+		 <label for="example3" class="form-label">Описание</label>
+		 <input type="text" th:value="${task.getDescription()}" class="form-control" id="example3" aria-describedby="emailHelp" name="description">
+		 <label for="example4" class="form-label">Вывод</label>
+		 <input type="text" th:value="${task.getOutput()}" class="form-control" id="example4" aria-describedby="emailHelp" name="output">
+		 <label for="example5" class="form-label">Выберите количество опыта</label>
+		 <input type="number" th:value="${task.getExperience()}" class="form-control" id="example5" aria-describedby="emailHelp" name="experience">
+		 
+		 <select name="language">
+		 	<option th:each="lang :${languages}" th:value="${lang.getId()}" th:text="${lang.getName()}"> </option>
+		 </select>
+		 <select name="category">
+		 	<option th:each="categ :${categories}" th:value="${categ.getId()}" th:text="${categ.getName()}"> </option>
+		 </select>
+		 <select name="complexity">
+		 	<option th:each="compl :${complexities}" th:value="${compl.getId()}" th:text="${compl.getName()}"> </option>
+		 </select>
+		 	<input type="hidden" th:value="${task.getId()}" name="taskId">
+		 <button type="submit" class="btn btn-primary" name="action" value="accept">Принять</button>
+		 <button type="submit" class="btn btn-primary" name="action" value="delete">Удалить</button>
+	</form>
+</div>
+
+</body>
+</html>
